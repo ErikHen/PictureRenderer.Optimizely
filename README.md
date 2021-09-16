@@ -10,4 +10,7 @@ Makes it super simple to render html picture element for your Optimizely CMS MVC
 ### How to use
 TBD
 
+### Current status
+First version not yet released.
+
 
