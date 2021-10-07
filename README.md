@@ -7,9 +7,12 @@ The most optimal image will always be used depending on the capabilities, screen
 
 The result is optimized (width, format, quality), lazy loaded, and responsive images.
 
+PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
+ and the amazing [ImageSharp libraries](https://github.com/SixLabors/ImageSharp).
+
 ### How to install
-* Add Baaijte.OptimizelyImageSharp.Web to your solution.
-* Add PictureRenderer.Optimizely to your solution
+* Add [Baaijte.OptimizelyImageSharp.Web](https://nuget.optimizely.com/package/?id=Baaijte.Optimizely.ImageSharp.Web) to your solution. Add the needed [configuration](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web#setup-and-configuration).
+* Add [PictureRenderer.Optimizely](https://nuget.optimizely.com/package/?id=PictureRenderer.Optimizely) to your solution.
 
 ## How to use
 
@@ -89,9 +92,11 @@ namespace MySite.Models.Media
     }
 }
 ```
-## Focal point
-TBD
-## Current status
-First version not yet released.
+<br><br>
+## Roadmap
+#### Focal point
+Support for using a focal point when images.
+#### WebP version
+Create WebP version of images. Waiting for ImageSharp.Web to support it.
 
 
