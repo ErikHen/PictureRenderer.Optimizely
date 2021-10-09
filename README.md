@@ -4,8 +4,10 @@ Makes it super simple to render html picture element for your Optimizely CMS MVC
 CMS editors don't have to care about image sizes or formats. 
 The most optimal image will always be used depending on the capabilities, screen size, and pixel density of the device that is used when visiting your web site.
 <br>
-
 The result is optimized (width, format, quality), lazy loaded, and responsive images.
+
+If you are unfamiliar with the details of the Picture element i highly recommed reading
+ [this](https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015) and/or [this](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
 
 PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
  and the amazing [ImageSharp libraries](https://github.com/SixLabors/ImageSharp).
@@ -58,7 +60,12 @@ namespace MyNamespace
     }
 }
 ```
-Read more about defining picture profiles [here](https://github.com/ErikHen/PictureRenderer#picture-profile).
+* **SrcSetWidths** – The different image widths you want the browser to select from. These values are used when rendering the srcset attribute.
+* **Sizes** – Define the size (width) the image should be according to a set of “media conditions” (similar to css media queries). Values are used to render the sizes attribute.
+* **AspectRatio (optional)** – The wanted aspect ratio of the image (width/height). Ex: An image with aspect ratio 16:9 = 16/9 = 1.777.
+* **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Deafult value: 80.
+* **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest SrcSetWidth if not set.
+
 #### 2. Render picture element with the Picture Html helper 
 
 ```@Html.Picture(Model.CurrentPage.TestImage1, PictureProfiles.SampleImage)```
