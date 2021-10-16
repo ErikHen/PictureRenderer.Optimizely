@@ -10,7 +10,7 @@ If you are unfamiliar with the details of the Picture element i highly recommed 
  [this](https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015) and/or [this](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
 
 PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
- and the amazing [ImageSharp libraries](https://github.com/SixLabors/ImageSharp).
+ and the awesome [ImageSharp libraries](https://github.com/SixLabors/ImageSharp), so please show appreciation by giving these proects some stars.
 
 ### How to install
 * Add [Baaijte.OptimizelyImageSharp.Web](https://nuget.optimizely.com/package/?id=Baaijte.Optimizely.ImageSharp.Web) to your solution. Add the needed [configuration](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web#setup-and-configuration).
@@ -102,8 +102,10 @@ namespace MySite.Models.Media
 <br><br>
 ## Roadmap
 #### Focal point
-Support for using a focal point when images.
+Support for using a focal point when cropping images.
 #### WebP version
 Create WebP version of images. Waiting for ImageSharp.Web to support it.
+#### TinyMCE add-on
+Make it simple to have optimized images when they are added to the rich text editor. 
 
 
