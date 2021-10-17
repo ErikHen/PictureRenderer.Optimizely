@@ -10,7 +10,7 @@ If you are unfamiliar with the details of the Picture element i highly recommed 
  [this](https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015) and/or [this](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
 
 PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
- and the awesome [ImageSharp libraries](https://github.com/SixLabors/ImageSharp), so please show appreciation by giving these proects some stars.
+ and the awesome [ImageSharp libraries](https://github.com/SixLabors/ImageSharp), so please show appreciation by starring these libraries.
 
 ### How to install
 * Add [Baaijte.OptimizelyImageSharp.Web](https://nuget.optimizely.com/package/?id=Baaijte.Optimizely.ImageSharp.Web) to your solution. Add the needed [configuration](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web#setup-and-configuration).
@@ -21,7 +21,7 @@ PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https:
 #### 1. Define picture profiles
 Create Picture profiles for the different types of images that you have on your web site. A Picture profile describes how an image should be scaled in various cases. <br>
 You could for example create Picture profiles for: "Top hero image", "Teaser image", "Image gallery thumbnail".
-```
+````C#
 using PictureRenderer.Optimizely;
 
 namespace MyNamespace
@@ -59,11 +59,11 @@ namespace MyNamespace
         };
     }
 }
-```
+````
 * **SrcSetWidths** – The different image widths you want the browser to select from. These values are used when rendering the srcset attribute.
-* **Sizes** – Define the size (width) the image should be according to a set of “media conditions” (similar to css media queries). Values are used to render the sizes attribute.
+* **Sizes** – Define the size (width) the image should be according to a set of “[media conditions](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)” (similar to css media queries). Values are used when rendering the sizes attribute.
 * **AspectRatio (optional)** – The wanted aspect ratio of the image (width/height). Ex: An image with aspect ratio 16:9 = 16/9 = 1.777.
-* **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Deafult value: 80.
+* **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
 * **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest SrcSetWidth if not set.
 
 #### 2. Render picture element with the Picture Html helper 
@@ -72,7 +72,7 @@ namespace MyNamespace
 <br>
 
 The result would be something like this
-```
+```xhtml
 <picture>
 <source srcset="
  /contentassets/c9c99316ae264c6b9a092b4f56024539/myimage.jpg?width=320&height=180&quality=80 320w,
@@ -104,7 +104,7 @@ namespace MySite.Models.Media
 #### Focal point
 Support for using a focal point when cropping images.
 #### WebP version
-Create WebP version of images. Waiting for ImageSharp.Web to support it.
+Create WebP version of images. Waiting for [ImageSharp.Web to support it](https://github.com/SixLabors/ImageSharp/pull/1552).
 #### TinyMCE add-on
 Make it simple to have optimized images when they are added to the rich text editor. 
 
