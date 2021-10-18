@@ -87,7 +87,7 @@ The result would be something like this
 
 ## Alt text
 You can add a string field/property on your Image content type named "AltText". The value of this field will be used when rendering the alt text in the picture element.
-```
+```c#
 namespace MySite.Models.Media
 {
     [ContentType(GUID = "0A89E464-56D4-449F-AEA8-2BF774AB8730")]
