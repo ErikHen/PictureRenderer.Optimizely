@@ -23,6 +23,8 @@ namespace PictureRenderer.Optimizely
                 return new HtmlString(string.Empty);
             }
 
+            (double x, double y) focalPoint = default;
+            
             if (profile.GetDataFromImage)
             {
                 var image = ServiceLocator.Current.GetInstance<IContentLoader>().Get<IContent>(imageReference);
@@ -30,13 +32,27 @@ namespace PictureRenderer.Optimizely
                 {
                     altText = image.Property["AltText"].ToString();
                 }
-                //TODO: focal point   (double x, double y) focalPoint = default;
-            }
+                
+                if (image?.Property["ImageFocalPoint"]?.Value != null)
+                {
+                    var focalPointString = image.Property["ImageFocalPoint"].ToString();
 
+                    //get focal point in format x|y (ImagePointEditor format)
+                    var focalValues = focalPointString.Split('|');
+                    if (focalValues.Length == 2)
+                    {
+                        if (!(double.TryParse(focalValues[0], out focalPoint.x) && (double.TryParse(focalValues[1], out focalPoint.y))))
+                        {
+                            //not able to parse the values
+                            focalPoint = default;
+                        }
+                    }
+                }
+            }
 
             var imageUrl = new UrlBuilder(ServiceLocator.Current.GetInstance<UrlResolver>().GetUrl(imageReference));
 
-            return new HtmlString(PictureRenderer.Picture.Render(imageUrl.ToString(), profile, altText, lazyLoading));
+            return new HtmlString(PictureRenderer.Picture.Render(imageUrl.ToString(), profile, altText, lazyLoading, focalPoint));
         }
     }
 }

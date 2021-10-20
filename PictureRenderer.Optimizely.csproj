@@ -4,13 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Erik Henningson</Authors>
     <Company />
-    <Description>Simplify rendering of HTML picture element. Supports optimized, lazy loaded, and responsive images.</Description>
+    <Description>Simplify rendering of HTML picture element. The result is optimized, lazy loaded, and responsive images.</Description>
     <PackageProjectUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</RepositoryUrl>
     <PackageTags>Picture Responsive Image Lazy</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIcon>picture_icon.png</PackageIcon>
-    <PackageIconUrl />
+    <PackageIconUrl>https://raw.githubusercontent.com/ErikHen/PictureRenderer.Optimizely/main/_Build/picture_icon.png</PackageIconUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,17 +18,6 @@
     <PackageReference Include="EPiServer.CMS.Core" Version="[12.0.3, 13)" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="PictureRenderer" Version="[1.2.2, 2)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="_Build\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="_Build\picture_icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>
