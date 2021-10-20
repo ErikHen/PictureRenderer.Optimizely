@@ -103,7 +103,7 @@ namespace MySite.Models.Media
 }
 ```
 ## Focal point
-Add a string field/property on your Image content model, and name it "ImageFocalPoint". Possible to use together with ImagePointEditor
+Add a string field/property on your Image content model, and name it "ImageFocalPoint". Possible to use together with [ImagePointEditor](https://github.com/ErikHen/ImagePointEditor)
 ```c#
 namespace MySite.Models.Media
 {
