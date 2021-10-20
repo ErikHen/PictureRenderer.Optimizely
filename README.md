@@ -66,6 +66,9 @@ namespace MyNamespace
 * **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
 * **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest SrcSetWidth if not set.
 
+See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tree/main/OptimizelyCMS)
+
+
 #### 2. Render picture element with the Picture Html helper 
 
 ```@Html.Picture(Model.CurrentPage.TestImage1, PictureProfiles.SampleImage)```
