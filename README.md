@@ -86,7 +86,7 @@ The result would be something like this
 <br>
 
 ## Alt text
-You can add a string field/property on your Image content type named "AltText". The value of this field will be used when rendering the alt text in the picture element.
+You can add a string field/property on your Image content model, and name it "AltText". The value of this field will be used when rendering the alt text in the picture element.
 ```c#
 namespace MySite.Models.Media
 {
@@ -99,10 +99,28 @@ namespace MySite.Models.Media
     }
 }
 ```
+## Focal point
+Add a string field/property on your Image content model, and name it "ImageFocalPoint". Possible to use together with ImagePointEditor
+```c#
+namespace MySite.Models.Media
+{
+    [ContentType(GUID = "0A89E464-56D4-449F-AEA8-2BF774AB8730")]
+    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png")]
+    public class ImageFile : ImageData 
+    {
+        [UIHint(ImagePoint.UIHint)]
+        [Display(Name = "Focal point")]
+        public virtual string ImageFocalPoint { get; set; }
+    }
+}
+```
 <br><br>
+## Version history
+#### 1.1.0
+- Added support for focal point when images are cropped. 
+#### 1.0.0
+- Initial version. 
 ## Roadmap
-#### Focal point
-Support for using a focal point when cropping images.
 #### WebP version
 Create WebP version of images. Waiting for [ImageSharp.Web to support it](https://github.com/SixLabors/ImageSharp/pull/1552).
 #### TinyMCE add-on
