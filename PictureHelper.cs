@@ -41,7 +41,7 @@ namespace PictureRenderer.Optimizely
                     var focalValues = focalPointString.Split('|');
                     if (focalValues.Length == 2)
                     {
-                        if (!(double.TryParse(focalValues[0], out focalPoint.x) && (double.TryParse(focalValues[1], out focalPoint.y))))
+                        if (!(double.TryParse(focalValues[0], NumberStyles.Any, CultureInfo.InvariantCulture, out focalPoint.x) && (double.TryParse(focalValues[1], NumberStyles.Any, CultureInfo.InvariantCulture, out focalPoint.y))))
                         {
                             //not able to parse the values
                             focalPoint = default;
