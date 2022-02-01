@@ -119,6 +119,8 @@ namespace MySite.Models.Media
 ```
 <br><br>
 ## Version history
+#### 1.1.1
+- Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
 #### 1.1.0
 - Added support for focal point when images are cropped. 
 #### 1.0.0

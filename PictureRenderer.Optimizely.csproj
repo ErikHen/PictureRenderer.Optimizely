@@ -10,7 +10,7 @@
     <PackageTags>Picture Responsive Image Lazy</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/ErikHen/PictureRenderer.Optimizely/main/_Build/picture_icon.png</PackageIconUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

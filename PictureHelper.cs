@@ -4,8 +4,7 @@ using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using PictureRenderer.Profiles;
-using PictureRenderer;
+using System.Globalization;
 
 namespace PictureRenderer.Optimizely
 {
