@@ -127,8 +127,10 @@ namespace MySite.Models.Media
 - Initial version. 
 ## Roadmap
 #### WebP version
-Create WebP version of images. Waiting for [ImageSharp.Web to support it](https://github.com/SixLabors/ImageSharp/pull/1552).
+Create WebP version of images. Waiting for [ImageSharp.Web 2.0](https://github.com/SixLabors/ImageSharp.Web/milestone/4).
 #### TinyMCE add-on
 Make it simple to have optimized images when they are added to the rich text editor. 
+#### Multiple images
+Editor may add different images for different screen sizes.
 
 
