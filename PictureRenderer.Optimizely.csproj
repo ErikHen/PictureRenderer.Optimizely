@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <Authors>Erik Henningson</Authors>
     <Company />
     <Description>Simplify rendering of HTML picture element. The result is optimized, lazy loaded, and responsive images.</Description>
@@ -14,10 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="[12.0.3, 13)" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="[12.0.3, 13)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="PictureRenderer" Version="[1.2.2, 2)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="[12.0.3, 13)" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="[12.4.0, 13)" />
   </ItemGroup>
 
 </Project>
