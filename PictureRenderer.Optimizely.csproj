@@ -14,8 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.2.0" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="12.2.0" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.5.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="12.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="PictureRenderer" Version="2.0.0" />
   </ItemGroup>

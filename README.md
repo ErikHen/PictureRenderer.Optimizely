@@ -103,7 +103,10 @@ namespace MySite.Models.Media
 }
 ```
 ## Focal point
-Add a string field/property on your Image content model, and name it "ImageFocalPoint". Possible to use together with [ImagePointEditor](https://github.com/ErikHen/ImagePointEditor)
+Add a string field/property on your Image content model, and name it "ImageFocalPoint". 
+<br>Focal point coordinates should be in the format &lt;x value&gt;|&lt;y value&gt;. The values range from 0-1 (ex:
+0|0 = left top corner, 0.5|0.5 = center of image).
+<br>Possible to use together with [ImagePointEditor](https://github.com/ErikHen/ImagePointEditor)
 ```c#
 namespace MySite.Models.Media
 {
@@ -119,16 +122,18 @@ namespace MySite.Models.Media
 ```
 <br><br>
 ## Version history
+#### 2.0
+- Possible to render webp format.
 #### 1.1.1
 - Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
-#### 1.1.0
+#### 1.1
 - Added support for focal point when images are cropped. 
-#### 1.0.0
+#### 1.0
 - Initial version. 
 ## Roadmap
-#### WebP version
-Create WebP version of images. Waiting for [ImageSharp.Web to support it](https://github.com/SixLabors/ImageSharp/pull/1552).
 #### TinyMCE add-on
 Make it simple to have optimized images when they are added to the rich text editor. 
+#### Multiple images
+Editor may add different images for different screen sizes.
 
 
