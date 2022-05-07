@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
-    <Authors>Erik Henningson</Authors>
+	<Authors>Erik Henningson</Authors>
     <Company />
     <Description>Simplify rendering of HTML picture element. The result is optimized, lazy loaded, and responsive images.</Description>
     <PackageProjectUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</PackageProjectUrl>
@@ -10,7 +10,7 @@
     <PackageTags>Picture Responsive Image Lazy</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/ErikHen/PictureRenderer.Optimizely/main/_Build/picture_icon.png</PackageIconUrl>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

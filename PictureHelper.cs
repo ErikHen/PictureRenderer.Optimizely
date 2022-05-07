@@ -38,7 +38,7 @@ namespace PictureRenderer.Optimizely
                 {
                     var focalPointString = image.Property["ImageFocalPoint"].ToString();
                     
-                    focalPoint = focalPointString.ParseFocalPoint();
+                    focalPoint = focalPointString.ToImageFocalPoint();
                 }
             }
 

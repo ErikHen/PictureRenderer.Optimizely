@@ -4,7 +4,10 @@ namespace PictureRenderer.Optimizely
 {
     public static class StringExtensions
     {
-        public static (double x, double y) ParseFocalPoint(this string focalPointString)
+        /// <summary>
+        /// Cast a string in the PictureRenderer focal point format ("x|y") to two numbers.
+        /// </summary>
+        public static (double x, double y) ToImageFocalPoint(this string focalPointString)
         {
             if (focalPointString == default)
                 return default;
