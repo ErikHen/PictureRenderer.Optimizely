@@ -123,7 +123,8 @@ namespace MySite.Models.Media
 <br><br>
 ## Version history
 #### 2.0
-- Possible to render webp format.
+- Possible to render webp format. Note that you need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support.
+- Possible to set css class on img element.
 #### 1.2.0
 - Target both .Net5 & .Net6.
 - Expose focal point parsing as string extension.
