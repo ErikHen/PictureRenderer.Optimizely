@@ -124,6 +124,10 @@ namespace MySite.Models.Media
 ## Version history
 #### 2.0
 - Possible to render webp format.
+#### 1.2.0
+- Target both .Net5 & .Net6.
+- Expose focal point parsing as string extension.
+Thanks [David](https://github.com/ddprince-yaksa)!
 #### 1.1.1
 - Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
 #### 1.1
