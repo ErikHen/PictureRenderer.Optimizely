@@ -11,13 +11,13 @@ namespace PictureRenderer.Optimizely
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class PictureHelper
     {
-        public static HtmlString Picture(this IHtmlHelper helper, ContentReference imageReference, PictureProfile profile, LazyLoading lazyLoading)
+        public static HtmlString Picture(this IHtmlHelper helper, ContentReference imageReference, PictureProfile profile, LazyLoading lazyLoading, string cssClass = "")
         {
-            return Picture(helper, imageReference, profile, string.Empty, lazyLoading);
+            return Picture(helper, imageReference, profile, string.Empty, lazyLoading, cssClass);
         }
 
         [SuppressMessage("ReSharper", "UnusedParameter.Global")]
-        public static HtmlString Picture(this IHtmlHelper helper, ContentReference imageReference, PictureProfile profile, string altText = "", LazyLoading lazyLoading = LazyLoading.Browser)
+        public static HtmlString Picture(this IHtmlHelper helper, ContentReference imageReference, PictureProfile profile, string altText = "", LazyLoading lazyLoading = LazyLoading.Browser, string cssClass = "")
         {
             if (imageReference == null)
             {
@@ -44,7 +44,7 @@ namespace PictureRenderer.Optimizely
 
             var imageUrl = new UrlBuilder(ServiceLocator.Current.GetInstance<UrlResolver>().GetUrl(imageReference));
 
-            return new HtmlString(PictureRenderer.Picture.Render(imageUrl.ToString(), profile, altText, lazyLoading, focalPoint));
+            return new HtmlString(PictureRenderer.Picture.Render(imageUrl.ToString(), profile, altText, lazyLoading, focalPoint, cssClass));
         }
     }
 }
