@@ -64,6 +64,7 @@ namespace MyNamespace
 * **Sizes** – Define the size (width) the image should be according to a set of “[media conditions](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)” (similar to css media queries). Values are used when rendering the sizes attribute.
 * **AspectRatio (optional)** – The wanted aspect ratio of the image (width/height). Ex: An image with aspect ratio 16:9 = 16/9 = 1.777.
 * **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
+* **CreateWebpForFormat (optional)** - The image formats that should be offered as webp versions. Jpg format is added by default.
 * **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest SrcSetWidth if not set.
 
 See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tree/main/OptimizelyCMS)
@@ -72,6 +73,12 @@ See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tr
 #### 2. Render picture element with the Picture Html helper 
 
 ```@Html.Picture(Model.CurrentPage.TestImage1, PictureProfiles.SampleImage)```
+#### Parameters
+* **imageReference** - ContentReference to your image.
+* **profile** - The Picture profile that specifies image widths, etc..
+* **altText (optional)** - Img element `alt` attribute (will overrride alt text set on image).
+* **lazyLoading (optional)** - Type of lazy loading. Currently only [browser native lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading#images_and_iframes), or none (defaults to browser native).
+* **cssClass (optional)** - Css class for img element. 
 <br>
 
 The result would be something like this
@@ -82,11 +89,15 @@ The result would be something like this
  /contentassets/c9c99316ae264c6b9a092b4f56024539/myimage.jpg?width=640&height=360&quality=80 640w,
  /contentassets/c9c99316ae264c6b9a092b4f56024539/myimage.jpg?width=750&height=422&quality=80 750w,
  /contentassets/c9c99316ae264c6b9a092b4f56024539/myimage.jpg?width=1500&height=844&quality=80 1500w"
- sizes="(max-width: 640px) 100vw, (max-width: 1200px) 320px, 750px"  />
+ sizes="(max-width: 640px) 100vw, (max-width: 1200px) 320px, 750px" />
 <img alt="Some alt text" src="/contentassets/c9c99316ae264c6b9a092b4f56024539/myimage.jpg?width=1500&height=844&quality=80" loading="lazy" />
 </picture>
 ```
 <br>
+
+## Webp format
+The rendered picture element will also contain [webp](https://developers.google.com/speed/webp/) versions of the image. By default this will be rendered for jpg images. <br>
+ImageSharp doesn't support creating lossless webp yet, so png images are usually better to leave as png. 
 
 ## Alt text
 You can add a string field/property on your Image content model, and name it "AltText". The value of this field will be used when rendering the alt text in the picture element.
