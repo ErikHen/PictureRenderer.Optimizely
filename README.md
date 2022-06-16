@@ -10,7 +10,7 @@ If you are unfamiliar with the details of the Picture element i highly recommed 
  [this](https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015) and/or [this](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
 
 PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
- and the awesome [ImageSharp libraries](https://github.com/SixLabors/ImageSharp), so please show appreciation by starring these libraries.
+ and [ImageSharp](https://github.com/SixLabors/ImageSharp), so please show appreciation by starring these libraries.
 
 ### How to install
 * Add [Baaijte.OptimizelyImageSharp.Web](https://nuget.optimizely.com/package/?id=Baaijte.Optimizely.ImageSharp.Web) to your solution. Add the needed [configuration](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web#setup-and-configuration).
@@ -57,11 +57,20 @@ namespace MyNamespace
             Sizes = new[] { "150px" },
             AspectRatio = 1  //square image (equal height and width).
         };
+
+        // Multi-image
+        // Show different images depending on media conditions (e.g. different image for mobile sized screen).
+        public static readonly ImageSharpProfile SampleImage2 = new()
+        {
+            MultiImageMediaConditions = new[] { new MediaCondition("(min-width: 1200px)", 600), new MediaCondition("(min-width: 600px)", 300) },
+            AspectRatio = 1.777
+        };
     }
 }
 ````
-* **SrcSetWidths** – The different image widths you want the browser to select from. These values are used when rendering the srcset attribute.
-* **Sizes** – Define the size (width) the image should be according to a set of “[media conditions](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)” (similar to css media queries). Values are used when rendering the sizes attribute.
+* **SrcSetWidths (for single image)** – The different image widths you want the browser to select from. These values are used when rendering the srcset attribute.
+* **Sizes (for single image)** – Define the size (width) the image should be according to a set of “[media conditions](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)” (similar to css media queries). Values are used when rendering the sizes attribute.
+* **MultiImageMediaConditions (for multi image)** - Define image widths for different media conditions. 
 * **AspectRatio (optional)** – The wanted aspect ratio of the image (width/height). Ex: An image with aspect ratio 16:9 = 16/9 = 1.777.
 * **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
 * **CreateWebpForFormat (optional)** - The image formats that should be offered as webp versions. Jpg format is added by default.
@@ -133,6 +142,8 @@ namespace MySite.Models.Media
 ```
 <br><br>
 ## Version history
+#### 2.1
+- Possible to show different images depending on media conditions. For example show different images for mobile screens.
 #### 2.0
 - Possible to render webp format. Note that you need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support.
 - Possible to set css class on img element.
@@ -149,7 +160,8 @@ Thanks [David](https://github.com/ddprince-yaksa)!
 ## Roadmap
 #### TinyMCE add-on
 Make it simple to have optimized images when they are added to the rich text editor. 
-#### Multiple images
-Editor may add different images for different screen sizes.
+#### Possible to disable fallback image and fallback format
+Since basically all browsers now support picture element and webp format, it could be made optional to render fallback image/format.
+
 
 
