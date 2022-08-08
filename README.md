@@ -60,9 +60,12 @@ namespace MyNamespace
 
         // Multi-image
         // Show different images depending on media conditions (e.g. different image for mobile sized screen).
-        public static readonly ImageSharpProfile SampleImage2 = new()
+        public static readonly PictureProfile MultiImageSample = new()
         {
-            MultiImageMediaConditions = new[] { new MediaCondition("(min-width: 1200px)", 600), new MediaCondition("(min-width: 600px)", 300) },
+            // First image will be resized to 600px width, and will be shown when viewport width is greater than 600px.
+            // Second image will be resized to 300px width, and will be shown when viewport width is less than 600px.
+            // Note: if second image isn't available, the first image will be used instead.
+            MultiImageMediaConditions = new[] { new MediaCondition("(min-width: 600px)", 600), new MediaCondition("(max-width: 600px)", 300) },
             AspectRatio = 1.777
         };
     }
@@ -74,7 +77,7 @@ namespace MyNamespace
 * **AspectRatio (optional)** – The wanted aspect ratio of the image (width/height). Ex: An image with aspect ratio 16:9 = 16/9 = 1.777.
 * **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
 * **CreateWebpForFormat (optional)** - The image formats that should be offered as webp versions. Jpg format is added by default.
-* **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest SrcSetWidth if not set.
+* **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest image if not set.
 
 See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tree/main/OptimizelyCMS)
 
@@ -90,7 +93,7 @@ See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tr
 * **cssClass (optional)** - Css class for img element. 
 <br>
 
-The result would be something like this
+The result (for single image) would be something like this
 ```xhtml
 <picture>
 <source srcset="
@@ -109,7 +112,7 @@ The rendered picture element will also contain [webp](https://developers.google.
 ImageSharp doesn't support creating lossless webp yet, so png images are usually better to leave as png. 
 
 ## Alt text
-You can add a string field/property on your Image content model, and name it "AltText". The value of this field will be used when rendering the alt text in the picture element.
+You can add a string field on your Image content model, and name it "AltText". The value of this field will be used when rendering the alt text in the picture element.
 ```c#
 namespace MySite.Models.Media
 {
@@ -123,7 +126,7 @@ namespace MySite.Models.Media
 }
 ```
 ## Focal point
-Add a string field/property on your Image content model, and name it "ImageFocalPoint". 
+Add a string field on your Image content model, and name it "ImageFocalPoint". 
 <br>Focal point coordinates should be in the format &lt;x value&gt;|&lt;y value&gt;. The values range from 0-1 (ex:
 0|0 = left top corner, 0.5|0.5 = center of image).
 <br>Possible to use together with [ImagePointEditor](https://github.com/ErikHen/ImagePointEditor)
