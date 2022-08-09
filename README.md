@@ -29,7 +29,7 @@ namespace MyNamespace
     public static class PictureProfiles
     {
         // Sample image
-        // Up to 640 pixels viewport width, the picture width will be 100% of the viewport minus 40 pixels.
+        // Up to 640 pixels viewport width, the picture width will be 100% of the viewport.
         // Up to 1200 pixels viewport width, the picture width will be 320 pixels.
         // On larger viewport width, the picture width will be 750 pixels.
         // Note that picture width is not the same as image width (but it can be, on screens with a "device pixel ratio" of 1).
