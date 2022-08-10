@@ -6,7 +6,7 @@ The most optimal image will always be used depending on the capabilities, screen
 <br>
 The result is optimized (width, format, quality), lazy loaded, and responsive images.
 
-If you are unfamiliar with the details of the Picture element i highly recommed reading
+If you are unfamiliar with the details of the Picture element i recommend reading
  [this](https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015) and/or [this](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
 
 PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
