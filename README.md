@@ -12,7 +12,7 @@ If you are unfamiliar with the details of the Picture element i recommend readin
 PictureRenderer.Optimizely builds upon [Baaijte.OptimizelyImageSharp.Web](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web)
  and [ImageSharp](https://github.com/SixLabors/ImageSharp), so please show appreciation by starring these libraries.
 
-### How to install
+## How to install
 * Add [Baaijte.OptimizelyImageSharp.Web](https://nuget.optimizely.com/package/?id=Baaijte.Optimizely.ImageSharp.Web) to your solution. Add the needed [configuration](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web#setup-and-configuration).
 * Add [PictureRenderer.Optimizely](https://nuget.optimizely.com/package/?id=PictureRenderer.Optimizely) to your solution.
 
