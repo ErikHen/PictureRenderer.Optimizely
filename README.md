@@ -146,7 +146,7 @@ namespace MySite.Models.Media
 <br><br>
 ## Version history
 #### 2.1
-- Possible to show different images depending on media conditions. For example show different images for mobile screens.
+- Possible to show different images depending on media conditions. For example show a different image for mobile screens.
 #### 2.0
 - Possible to render webp format. Note that you need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support.
 - Possible to set css class on img element.
@@ -165,6 +165,7 @@ Thanks [David](https://github.com/ddprince-yaksa)!
 Make it simple to have optimized images when they are added to the rich text editor. 
 #### Possible to disable fallback image and fallback format
 Since basically all browsers now support picture element and webp format, it could be made optional to render fallback image/format.
-
+#### Progressive lazy loading
+Make it possible to show a very low-quality image on initial load, and lazy-load the high-quaility image after entire page is loaded.
 
 
