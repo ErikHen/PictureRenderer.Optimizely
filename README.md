@@ -145,21 +145,27 @@ namespace MySite.Models.Media
 ```
 <br><br>
 ## Version history
-#### 2.1
-- Possible to show different images depending on media conditions. For example show a different image for mobile screens.
-#### 2.0
-- Possible to render webp format. Note that you need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support.
-- Possible to set css class on img element.
-#### 1.2.0
-- Target both .Net5 & .Net6.
-- Expose focal point parsing as string extension.
+**2.2** <br>Use v3.2 of PictureRenderer.
+
+**2.1**<br>Possible to show different images depending on media conditions. For example show a different image for mobile screens.
+
+**2.0**<br>
+Possible to render webp format (need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support).<br>
+Possible to set css class on img element.
+
+**1.2.0**<br>
+Target both .Net5 & .Net6.<br>
+Expose focal point parsing as string extension.<br>
 Thanks [David](https://github.com/ddprince-yaksa)!
-#### 1.1.1
-- Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
-#### 1.1
-- Added support for focal point when images are cropped. 
-#### 1.0
-- Initial version. 
+
+**1.1.1**<br>
+Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
+
+**1.1**<br>
+Added support for focal point when images are cropped. 
+
+**1.0**<br>
+Initial version. 
 ## Roadmap
 #### TinyMCE add-on
 Make it simple to have optimized images when they are added to the rich text editor. 
