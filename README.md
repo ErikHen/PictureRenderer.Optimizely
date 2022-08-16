@@ -109,7 +109,11 @@ The result (for single image) would be something like this
 
 ## Webp format
 The rendered picture element will also contain [webp](https://developers.google.com/speed/webp/) versions of the image. By default this will be rendered for jpg images. <br>
-ImageSharp doesn't support creating lossless webp yet, so png images are usually better to leave as png. 
+If you also want png images to be converted to WebP you can define that in your Picture profile. Just add ```CreateWebpForFormat```, which is an array of the formats that will be converted.
+```c#
+CreateWebpForFormat = new []{ PictureRenderer.ImageFormat.Jpeg, PictureRenderer.ImageFormat.Png }
+```
+
 
 ## Alt text
 You can add a string field on your Image content model, and name it "AltText". The value of this field will be used when rendering the alt text in the picture element.
