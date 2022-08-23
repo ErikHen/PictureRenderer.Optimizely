@@ -109,7 +109,11 @@ The result (for single image) would be something like this
 
 ## Webp format
 The rendered picture element will also contain [webp](https://developers.google.com/speed/webp/) versions of the image. By default this will be rendered for jpg images. <br>
-ImageSharp doesn't support creating lossless webp yet, so png images are usually better to leave as png. 
+If you also want png images to be converted to WebP you can define that in your Picture profile. Just add ```CreateWebpForFormat```, which is an array of the formats that will be converted.
+```c#
+CreateWebpForFormat = new []{ PictureRenderer.ImageFormat.Jpeg, PictureRenderer.ImageFormat.Png }
+```
+
 
 ## Alt text
 You can add a string field on your Image content model, and name it "AltText". The value of this field will be used when rendering the alt text in the picture element.
@@ -145,21 +149,27 @@ namespace MySite.Models.Media
 ```
 <br><br>
 ## Version history
-#### 2.1
-- Possible to show different images depending on media conditions. For example show a different image for mobile screens.
-#### 2.0
-- Possible to render webp format. Note that you need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support.
-- Possible to set css class on img element.
-#### 1.2.0
-- Target both .Net5 & .Net6.
-- Expose focal point parsing as string extension.
+**2.2** <br>Use v3.2 of PictureRenderer.
+
+**2.1**<br>Possible to show different images depending on media conditions. For example show a different image for mobile screens.
+
+**2.0**<br>
+Possible to render webp format (need to use Baaijte.Optimizely.ImageSharp.Web v2.0+ for webp support).<br>
+Possible to set css class on img element.
+
+**1.2.0**<br>
+Target both .Net5 & .Net6.<br>
+Expose focal point parsing as string extension.<br>
 Thanks [David](https://github.com/ddprince-yaksa)!
-#### 1.1.1
-- Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
-#### 1.1
-- Added support for focal point when images are cropped. 
-#### 1.0
-- Initial version. 
+
+**1.1.1**<br>
+Use invariant culture when parsing focal point value. Thanks [Gatis](https://github.com/gatisb)!
+
+**1.1**<br>
+Added support for focal point when images are cropped. 
+
+**1.0**<br>
+Initial version. 
 ## Roadmap
 #### TinyMCE add-on
 Make it simple to have optimized images when they are added to the rich text editor. 
