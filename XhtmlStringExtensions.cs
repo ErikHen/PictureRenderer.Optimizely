@@ -13,8 +13,12 @@ namespace PictureRenderer.Optimizely
         /// <summary>
         /// Replaces img elements with a picture elements.
         /// </summary>
-        public static XhtmlString RenderImageAsPicture(this XhtmlString xhtmlString, int maxWidth = 1024)
+        public static XhtmlString RenderImageAsPicture(this XhtmlString xhtmlString, RichTextPictureProfile profile = null)
         {
+            if (profile == null)
+            {
+                profile = new RichTextPictureProfile();
+            }
             var ctxModeResolver = ServiceLocator.Current.GetInstance<EPiServer.Web.IContextModeResolver>();
             if (ctxModeResolver.CurrentMode == ContextMode.Edit)
             {
@@ -22,36 +26,29 @@ namespace PictureRenderer.Optimizely
             }
 
             //todo: extend regex so that it doesn't match img element inside picture element (that would be a very rare edge case). https://www.regular-expressions.info/lookaround.html https://www.rexegg.com/regex-lookarounds.html
-            var processedText = Regex.Replace(xhtmlString.ToInternalString(), "(<img.*?>)", m => GetPictureFromImg(m.Groups[1].Value, maxWidth));
+            var processedText = Regex.Replace(xhtmlString.ToInternalString(), "(<img.*?>)", m => GetPictureFromImg(m.Groups[1].Value, profile));
 
             return new XhtmlString(processedText);
         }
 
-        private static string GetPictureFromImg(string imgElement, int maxWidth)
+        private static string GetPictureFromImg(string imgElement, RichTextPictureProfile richTextProfile)
         {
-            var imgData = GetValuesFromImg(imgElement);
-
-            int actualWidth;
-            if (imgData.PercentageWidth > 0)
-            {
-                actualWidth = (int)Math.Round(maxWidth * imgData.PercentageWidth / 10, 0);
-            }
-            else
-            {
-                actualWidth = imgData.Width > maxWidth || imgData.Width == 0 ? maxWidth : imgData.Width;
-            }
-            var aspectRatio = imgData.Width > 0 && imgData.Height > 0 ? Math.Round((double)imgData.Width / imgData.Height, 3) : default;
+            var imgValues = GetValuesFromImg(imgElement);
+            var calculatedWith = GetImageWidth(imgValues, richTextProfile.MaxImageWidth);
 
             var tinyMcePictureProfile = new ImageSharpProfile()
             {
-                SrcSetWidths = new[] { actualWidth },
-                Sizes = new[] { $"{actualWidth}px" },
-                AspectRatio = aspectRatio,
+                SrcSetWidths = new[] { calculatedWith },
+                Sizes = new[] { $"{calculatedWith}px" },
+                AspectRatio = CalculateAspectRatio(imgValues),
+                CreateWebpForFormat = richTextProfile.CreateWebpForFormat,
+                Quality = richTextProfile.Quality
             };
 
-            var imgUrl = UrlResolver.Current.GetUrl(imgData.Src);
+            var imgUrl = UrlResolver.Current.GetUrl(imgValues.Src);
+            var imgPercentageWidth = imgValues.PercentageWidth > 0 ? imgValues.PercentageWidth + "%" : string.Empty;
 
-            return Picture.Render(imgUrl, tinyMcePictureProfile, imgData.Alt, imgData.CssClass);
+            return Picture.Render(imgUrl, tinyMcePictureProfile, imgValues.Alt, LazyLoading.Browser, default, imgValues.CssClass, imgPercentageWidth);
         }
 
         private static ImgData GetValuesFromImg(string imgElement)
@@ -79,13 +76,27 @@ namespace PictureRenderer.Optimizely
             return imgData;
         }
 
+        private static int GetImageWidth(ImgData imgValues, int maxWidth)
+        {
+            if (imgValues.PercentageWidth > 0)
+            {
+                return (int)Math.Round(maxWidth * imgValues.PercentageWidth / 100, 0);
+            }
+
+            return imgValues.Width > maxWidth || imgValues.Width == 0 ? maxWidth : imgValues.Width;
+        }
+
+        private static double CalculateAspectRatio(ImgData imgValues)
+        {
+            return imgValues.Width > 0 && imgValues.Height > 0 ? Math.Round((double)imgValues.Width / imgValues.Height, 3) : default;
+        }
+
         private struct ImgData
         {
             public string Src { get; init; }
             public string Alt { get; init; }
             public string CssClass { get; init; }
             public double PercentageWidth { get; init; }
-            //public string PercentageHeight { get; set; }
             public int Width { get; init; }
             public int Height { get; init; }
         }

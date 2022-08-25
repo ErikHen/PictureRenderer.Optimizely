@@ -147,8 +147,32 @@ namespace MySite.Models.Media
     }
 }
 ```
+## Images added in rich text editor
+Img elements rendered by the rich text editor (TinyMCE) can be replaced with a picture element.
+Enable this by creating a display template for XhtmlString. Create the file `/Views/Shared/DisplayTemplates/XhtmlString.cshtml`
+and add:
+```c#
+@using PictureRenderer.Optimizely
+@model XhtmlString
+
+@{ if (Model == null) { return; }; }
+
+@{Html.RenderXhtmlString(Model.RenderImageAsPicture());}
+```
+If you want a more fine grained control of which Xhtml properties that should renderer picture elements, you can do this in your cshtml view:
+```c#
+@{ Html.RenderXhtmlString(Model.CurrentPage.MainBody.RenderImageAsPicture()); }
+ 
+<!-- Set image quality to 85 -->
+@{Html.RenderXhtmlString(Model.RenderImageAsPicture(new RichTextPictureProfile {Quality = 85})));}
+```
+#### RenderImageAsPicture parameters
+* **profile (optional)** - A picture profile where you can set maximum image width (default value: 1024), image quality (default value: 80), and what image types that should be converted to WebP (default: jpg). 
+
 <br><br>
 ## Version history
+**2.3** <br>Suport for rendering picture element in content from rich text editor.
+
 **2.2** <br>Use v3.2 of PictureRenderer.
 
 **2.1**<br>Possible to show different images depending on media conditions. For example show a different image for mobile screens.
