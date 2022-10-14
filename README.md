@@ -180,7 +180,7 @@ If you want a more fine grained control of which Xhtml properties that should re
 
 <br><br>
 ## Version history
-**2.4** <br>Use v3.5 of PictureRendrer. More compliant rendering + possible to show info.  
+**2.4** <br>Use v3.5 of PictureRenderer. More compliant rendering + possible to show info.  
 
 **2.3** <br>Suport for rendering picture element in content from rich text editor.
 
