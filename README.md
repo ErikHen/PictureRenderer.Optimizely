@@ -87,7 +87,7 @@ See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tr
 
 ```@Html.Picture(Model.CurrentPage.TestImage1, PictureProfiles.SampleImage)```
 #### Parameters
-* **imageReference** - ContentReference to your image.
+* **imageReference/imageReferences** - ContentReference to your image, or array for multi image.
 * **profile** - The Picture profile that specifies image widths, etc..
 * **altText (optional)** - Img element `alt` attribute (will overrride alt text set on image).
 * **lazyLoading (optional)** - Type of lazy loading. Currently only [browser native lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading#images_and_iframes), or none (defaults to browser native).
