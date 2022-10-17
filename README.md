@@ -78,6 +78,7 @@ namespace MyNamespace
 * **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
 * **CreateWebpForFormat (optional)** - The image formats that should be offered as webp versions. Jpg format is added by default.
 * **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest image if not set.
+* **ShowInfo (optional)** - If true, an overlay will show info about the currently selected image.
 
 See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tree/main/OptimizelyCMS)
 
@@ -86,7 +87,7 @@ See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tr
 
 ```@Html.Picture(Model.CurrentPage.TestImage1, PictureProfiles.SampleImage)```
 #### Parameters
-* **imageReference** - ContentReference to your image.
+* **imageReference/imageReferences** - ContentReference to your image, or array for multi image.
 * **profile** - The Picture profile that specifies image widths, etc..
 * **altText (optional)** - Img element `alt` attribute (will overrride alt text set on image).
 * **lazyLoading (optional)** - Type of lazy loading. Currently only [browser native lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading#images_and_iframes), or none (defaults to browser native).
@@ -106,6 +107,14 @@ The result (for single image) would be something like this
 </picture>
 ```
 <br>
+
+### Check that everyhting works as expected
+If you set ```ShowInfo = true``` in the picture profile, an overlay with information about the currently selected image will be rendered.<br>
+You can see that different images are selected for different devices and screen sizes. Note that the Chrome (Chromium based) browser will not select a smaller image if a larger one is already downloaded. It may be easier to see the actual behaviour when using e.g. Firefox.
+<br>
+![Show Info](_Build/ShowInfo.png)<br>
+This setting should of course never be used in your live/production environment, it's only meant for testing. 
+
 
 ## Webp format
 The rendered picture element will also contain [webp](https://developers.google.com/speed/webp/) versions of the image. By default this will be rendered for jpg images. <br>
@@ -171,6 +180,8 @@ If you want a more fine grained control of which Xhtml properties that should re
 
 <br><br>
 ## Version history
+**2.4** <br>Use v3.5 of PictureRenderer. More compliant rendering + possible to show info.  
+
 **2.3** <br>Suport for rendering picture element in content from rich text editor.
 
 **2.2** <br>Use v3.2 of PictureRenderer.
