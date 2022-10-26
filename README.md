@@ -78,6 +78,7 @@ namespace MyNamespace
 * **Quality (optional)** - Image quality. Lower value = less file size. Not valid for all image formats. Default value: 80.
 * **CreateWebpForFormat (optional)** - The image formats that should be offered as webp versions. Jpg format is added by default.
 * **FallbackWidth (optional)** – This image width will be used in browsers that don’t support the picture element. Will use the largest image if not set.
+* **ImgWidthHeight (optional)** - If true, width and height attributes will be rendered on the img element.
 * **ShowInfo (optional)** - If true, an overlay will show info about the currently selected image.
 
 See also the [sample site](https://github.com/ErikHen/PictureRenderer.Samples/tree/main/OptimizelyCMS)
@@ -206,8 +207,6 @@ Added support for focal point when images are cropped.
 **1.0**<br>
 Initial version. 
 ## Roadmap
-#### TinyMCE add-on
-Make it simple to have optimized images when they are added to the rich text editor. 
 #### Possible to disable fallback image and fallback format
 Since basically all browsers now support picture element and webp format, it could be made optional to render fallback image/format.
 #### Progressive lazy loading
