@@ -44,6 +44,11 @@ namespace PictureRenderer.Optimizely
                 }
             }
 
+            if(profile.StaticHeight.HasValue && profile.StaticHeight > 0)
+            {
+                imageUrl.QueryCollection.Add("height", profile.StaticHeight.ToString());
+            }
+
             return new HtmlString(PictureRenderer.Picture.Render(imageUrl.ToString(), profile, altText, lazyLoading, focalPoint, cssClass));
         }
 
@@ -61,11 +66,11 @@ namespace PictureRenderer.Optimizely
                 return new HtmlString(string.Empty);
             }
 
-            var imageUrls = new List<string>();
+            var imageUrls = new List<UrlBuilder>();
             var focalPoints = new List<(double x, double y)>();
             foreach (var imageRef in imageReferences.Where(ir => ir != null))
             {
-                imageUrls.Add((new UrlBuilder(ServiceLocator.Current.GetInstance<UrlResolver>().GetUrl(imageRef))).ToString());
+                imageUrls.Add(new UrlBuilder(ServiceLocator.Current.GetInstance<UrlResolver>().GetUrl(imageRef)));
 
                 if (profile.GetDataFromImage)
                 {
@@ -88,9 +93,15 @@ namespace PictureRenderer.Optimizely
                         focalPoints.Add(default);
                     }
                 }
+
+                if (profile.StaticHeight.HasValue && profile.StaticHeight > 0)
+                {
+                    imageUrls.ForEach(url => url.QueryCollection.Add("height", profile.StaticHeight.ToString()));
+                }
             }
 
-            return new HtmlString(PictureRenderer.Picture.Render(imageUrls.ToArray(), profile, altText, lazyLoading, focalPoints.ToArray(), cssClass));
+            var urlStrings = imageUrls.Select(url => url.ToString());
+            return new HtmlString(PictureRenderer.Picture.Render(urlStrings.ToArray(), profile, altText, lazyLoading, focalPoints.ToArray(), cssClass));
         }
     }
 }
