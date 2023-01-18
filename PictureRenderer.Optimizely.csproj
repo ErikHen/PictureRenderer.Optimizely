@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;net6.0;net7.0</TargetFrameworks>
 	<Authors>Erik Henningson</Authors>
     <Company />
     <Description>Simplify rendering of HTML picture element. The result is optimized, lazy loaded, and responsive images.</Description>
