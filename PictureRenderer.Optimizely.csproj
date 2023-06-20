@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0;net7.0</TargetFrameworks>
-	<Authors>Erik Henningson</Authors>
-    <Company />
-    <Description>Simplify rendering of HTML picture element. The result is optimized, lazy loaded, and responsive images.</Description>
-    <PackageProjectUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</RepositoryUrl>
-    <PackageTags>Picture Responsive Image Lazy</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIconUrl>https://raw.githubusercontent.com/ErikHen/PictureRenderer.Optimizely/main/_Build/picture_icon.png</PackageIconUrl>
-    <Version>2.5.0</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;net6.0;net7.0</TargetFrameworks>
+		<Authors>Erik Henningson</Authors>
+		<Company />
+		<Description>Simplify rendering of HTML picture element. The result is optimized, lazy loaded, and responsive images.</Description>
+		<PackageProjectUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ErikHen/PictureRenderer.Optimizely</RepositoryUrl>
+		<PackageTags>Picture Responsive Image Lazy</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/ErikHen/PictureRenderer.Optimizely/main/_Build/picture_icon.png</PackageIconUrl>
+		<Version>3.0.0-preview1</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-	  <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="12.4.0" />
-	  <PackageReference Include="PictureRenderer" Version="3.6.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="12.4.0" />
+		<PackageReference Include="PictureRenderer" Version="3.7.0" />
+	</ItemGroup>
 
 </Project>

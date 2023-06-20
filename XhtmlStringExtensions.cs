@@ -10,15 +10,21 @@ namespace PictureRenderer.Optimizely
 {
     public static class XhtmlStringExtensions
     {
-        /// <summary>
-        /// Replaces img elements with a picture elements.
-        /// </summary>
+        [Obsolete("Use ReplaceImgWithPicture instead.")]
         public static XhtmlString RenderImageAsPicture(this XhtmlString xhtmlString, RichTextPictureProfile profile = null)
         {
             if (profile == null)
             {
                 profile = new RichTextPictureProfile();
             }
+            return xhtmlString.ReplaceImgWithPicture(profile);
+        }
+
+        /// <summary>
+        /// Replaces img elements with a picture elements.
+        /// </summary>
+        public static XhtmlString ReplaceImgWithPicture(this XhtmlString xhtmlString, RteProfileBase profile)
+        {
             var ctxModeResolver = ServiceLocator.Current.GetInstance<EPiServer.Web.IContextModeResolver>();
             if (ctxModeResolver.CurrentMode == ContextMode.Edit)
             {
@@ -31,19 +37,33 @@ namespace PictureRenderer.Optimizely
             return new XhtmlString(processedText);
         }
 
-        private static string GetPictureFromImg(string imgElement, RichTextPictureProfile richTextProfile)
+        private static string GetPictureFromImg(string imgElement, RteProfileBase richTextProfile)
         {
             var imgValues = GetValuesFromImg(imgElement);
             var calculatedWith = GetImageWidth(imgValues, richTextProfile.MaxImageWidth);
 
-            var tinyMcePictureProfile = new ImageSharpProfile()
+            PictureProfileBase tinyMcePictureProfile = null;
+            if (richTextProfile is CloudflareRteProfile)
             {
-                SrcSetWidths = new[] { calculatedWith },
-                Sizes = new[] { $"{calculatedWith}px" },
-                AspectRatio = CalculateAspectRatio(imgValues),
-                CreateWebpForFormat = richTextProfile.CreateWebpForFormat,
-                Quality = richTextProfile.Quality
-            };
+                tinyMcePictureProfile = new CloudflareProfile()
+                {
+                    SrcSetWidths = new[] { calculatedWith },
+                    Sizes = new[] { $"{calculatedWith}px" },
+                    AspectRatio = CalculateAspectRatio(imgValues),
+                    Quality = richTextProfile.Quality
+                };
+            }
+            if (richTextProfile is ImageSharpRteProfile imageSharpRteProfile)
+            {
+                tinyMcePictureProfile = new ImageSharpProfile
+                {
+                    SrcSetWidths = new[] { calculatedWith },
+                    Sizes = new[] { $"{calculatedWith}px" },
+                    AspectRatio = CalculateAspectRatio(imgValues),
+                    CreateWebpForFormat = imageSharpRteProfile.CreateWebpForFormat,
+                    Quality = richTextProfile.Quality
+                };
+            }
 
             var imgUrl = UrlResolver.Current.GetUrl(imgValues.Src);
             var imgPercentageWidth = imgValues.PercentageWidth > 0 ? imgValues.PercentageWidth + "%" : string.Empty;

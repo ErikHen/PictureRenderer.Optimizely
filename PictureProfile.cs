@@ -7,16 +7,9 @@ using PictureRenderer.Profiles;
 
 namespace PictureRenderer.Optimizely
 {
-    public class PictureProfile : ImageSharpProfile
+    [Obsolete("Use PictureRenderer.Profiles.ImageSharpProfile instead")]
+    public class PictureProfile : PictureRenderer.Profiles.ImageSharpProfile
     {
-        /// <summary>
-        /// Set to false for a potential slight performance gain. But it will not be possible to get alt text or focal point from image. 
-        /// </summary>
-        public bool GetDataFromImage { get; set; }
-
-        public PictureProfile()
-        {
-            GetDataFromImage = true;
-        }
+        
     }
 }
