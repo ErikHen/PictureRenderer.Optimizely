@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PictureRenderer.Optimizely
 {
-    [Obsolete("Renamed, use ImageSharpRteProfile instead.")]
-    public class RichTextPictureProfile : ImageSharpRteProfile
+    public class CloudflareRteProfile : RteProfileBase
     {
-        
+       
     }
 }
