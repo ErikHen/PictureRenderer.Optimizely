@@ -119,16 +119,12 @@ You can see that different images are selected for different devices and screen 
 This setting should of course never be used in your live/production environment, it's only meant for testing. 
 
 
-## Webp format
-The rendered picture element will also contain [webp](https://developers.google.com/speed/webp/) versions of the image. By default this will be rendered for jpg images. <br>
-If you also want png images to be converted to WebP you can define that in your Picture profile. Just add ```CreateWebpForFormat```, which is an array of the formats that will be converted.
+## Webp/AVIF format
+Cloudflare's image service automatically converts images to Webp or AVIF format, if the browser supports it.<br>
+If using ImageSharp.Web as image processor, the rendered picture element will also contain webp versions of the image. By default this will be rendered for jpg images, but png images can also be configured to have a webp version:
 ```c#
 CreateWebpForFormat = new []{ PictureRenderer.ImageFormat.Jpeg, PictureRenderer.ImageFormat.Png }
 ```
-
-## Webp/AVIF format
-Cloudflare's image service automatically converts images to Webp or AVIF format, if the browser supports it.
-If using ImageSharp.Web as image processor, the rendered picture element will also contain webp versions of the image. By default this will be rendered for jpg images.
 
 
 ## Alt text
