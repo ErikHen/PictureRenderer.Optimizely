@@ -6,7 +6,7 @@ The most optimal image will always be used depending on the capabilities, screen
 <br>
 The result is optimized (width, format, quality), lazy loaded, and responsive images.
 <br>
-PictureRenderer can use Cloudflare Image Resizing or ImageSharp for resizing images.
+PictureRenderer can use [Cloudflare Image Resizing](https://developers.cloudflare.com/images/image-resizing/url-format/) or [ImageSharp](https://sixlabors.com/products/imagesharp-web/) for resizing images.
 
 If you are unfamiliar with the details of the Picture element i recommend reading
  [this](https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015) and/or [this](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
