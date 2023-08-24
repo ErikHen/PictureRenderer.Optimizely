@@ -14,7 +14,7 @@ If you are unfamiliar with the details of the Picture element i recommend readin
 
 ## How to install
 * Add [PictureRenderer.Optimizely](https://nuget.optimizely.com/package/?id=PictureRenderer.Optimizely) to your solution.
-* If using Cloudflare Image Resizing (recommended), this needs to be enabled in your Cloudflare CDN. See [here](https://www.optimizely.com/beta) for how to do that for an Optimizely DXP solution (currently a beta feature).
+* If using Cloudflare Image Resizing, this needs to be enabled in your Cloudflare CDN. See [here](https://www.optimizely.com/beta) for how to do that for an Optimizely DXP solution (currently a beta feature).
 * If resizing using ImageSharp you also need to add [Baaijte.OptimizelyImageSharp.Web](https://nuget.optimizely.com/package/?id=Baaijte.Optimizely.ImageSharp.Web) to your solution. Check the needed [configuration](https://github.com/vnbaaij/Baaijte.Optimizely.ImageSharp.Web#setup-and-configuration).
 ## How to use
 
@@ -169,7 +169,7 @@ and add:
 
 @{ if (Model == null) { return; }; }
 
-@{Html.RenderXhtmlString(Model.RenderImageAsPicture());}
+@{Html.RenderXhtmlString(Model.ReplaceImgWithPicture());}
 ```
 If you want a more fine grained control of which Xhtml properties that should renderer picture elements, you can do this in your cshtml view:
 ```c#
@@ -178,7 +178,7 @@ If you want a more fine grained control of which Xhtml properties that should re
 <!-- Set image quality to 85 -->
 @{Html.RenderXhtmlString(Model.ReplaceImgWithPicture(new CloudflareRteProfile {Quality = 85})));}
 ```
-#### RenderImageAsPicture parameters
+#### ReplaceImgWithPicture parameters
 * **profile (optional)** - A picture profile where you can set maximum image width (default value: 1024), image quality (default value: 80), and what image types that should be converted to WebP (default: jpg). 
 
 <br><br>
@@ -205,9 +205,8 @@ Possible to set css class on img element. <br>
 **1.1** Added support for focal point when images are cropped. <br>
 
 **1.0** Initial version. 
-## Roadmap
-#### Support for Cloudflare image resizing
-May be used in Optimizely Content Cloud instead of ImageSharp.
+## Possible roadmap
+#### Fallback to ImageSharp for environments where Cloudflare isn't available
 #### Possible to disable fallback image and fallback format
 Since basically all browsers now support picture element and webp format, it could be made optional to render fallback image/format.
 #### Progressive lazy loading
