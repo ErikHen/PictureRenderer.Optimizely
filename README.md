@@ -183,6 +183,8 @@ If you want a more fine grained control of which Xhtml properties that should re
 
 <br><br>
 ## Version history
+**3.1** Render with correct url in on-page edit mode. Style attribute set by TinyMCE will be added to img elemement.<br>
+
 **3.0** Support for Cloudflare image resizing. Dropped support for .Net5. Removed GetDataFromImage setting.<br>
 
 **2.5** Use v3.6 of PictureRenderer. Possible to set fixed height. Thanks [Karl](https://github.com/karlsvan)!<br>
