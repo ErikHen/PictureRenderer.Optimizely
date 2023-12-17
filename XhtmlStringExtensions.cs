@@ -50,7 +50,8 @@ namespace PictureRenderer.Optimizely
                     SrcSetWidths = new[] { calculatedWith },
                     Sizes = new[] { $"{calculatedWith}px" },
                     AspectRatio = CalculateAspectRatio(imgValues),
-                    Quality = richTextProfile.Quality
+                    Quality = richTextProfile.Quality,
+                    ImgWidthHeight = true
                 };
             }
             if (richTextProfile is ImageSharpRteProfile imageSharpRteProfile)
@@ -61,14 +62,15 @@ namespace PictureRenderer.Optimizely
                     Sizes = new[] { $"{calculatedWith}px" },
                     AspectRatio = CalculateAspectRatio(imgValues),
                     CreateWebpForFormat = imageSharpRteProfile.CreateWebpForFormat,
-                    Quality = richTextProfile.Quality
+                    Quality = richTextProfile.Quality,
+                    ImgWidthHeight = true
                 };
             }
 
             var imgUrl = UrlResolver.Current.GetUrl(imgValues.Src);
             var imgPercentageWidth = imgValues.PercentageWidth > 0 ? imgValues.PercentageWidth + "%" : string.Empty;
 
-            return Picture.Render(imgUrl, tinyMcePictureProfile, imgValues.Alt, LazyLoading.Browser, default, imgValues.CssClass, imgPercentageWidth);
+            return Picture.Render(imgUrl, tinyMcePictureProfile, imgValues.Alt, LazyLoading.Browser, default, imgValues.CssClass, imgPercentageWidth, style: imgValues.Style);
         }
 
         private static ImgData GetValuesFromImg(string imgElement)
@@ -88,6 +90,7 @@ namespace PictureRenderer.Optimizely
                 Src = Regex.Match(imgElement, "src=\"(.*?)\"").Groups[1].Value,
                 Alt = Regex.Match(imgElement, "alt=\"(.*?)\"").Groups[1].Value,
                 CssClass = Regex.Match(imgElement, "class=\"(.*?)\"").Groups[1].Value,
+                Style = Regex.Match(imgElement, "style=\"(.*?)\"").Groups[1].Value,
                 PercentageWidth = percentageWidth,
                 Width = width,
                 Height = height,
@@ -119,6 +122,7 @@ namespace PictureRenderer.Optimizely
             public double PercentageWidth { get; init; }
             public int Width { get; init; }
             public int Height { get; init; }
+            public string Style { get; init; }
         }
     }
 }

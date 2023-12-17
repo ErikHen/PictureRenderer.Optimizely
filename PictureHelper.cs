@@ -4,6 +4,7 @@ using System.Linq;
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.ServiceLocation;
+using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,9 +27,8 @@ namespace PictureRenderer.Optimizely
                 return new HtmlString(string.Empty);
             }
 
-            var imageUrl = new UrlBuilder(ServiceLocator.Current.GetInstance<UrlResolver>().GetUrl(imageReference));
+            var imageUrl = UrlResolver.Current.GetUrl(imageReference, null, new VirtualPathArguments {ContextMode = ContextMode.Default});
 
-            
             (double x, double y) focalPoint = default;
             var image = ServiceLocator.Current.GetInstance<IContentLoader>().Get<IContent>(imageReference);
             if (string.IsNullOrEmpty(altText) && image?.Property["AltText"]?.Value != null)
@@ -39,7 +39,6 @@ namespace PictureRenderer.Optimizely
             if (image?.Property["ImageFocalPoint"]?.Value != null)
             {
                 var focalPointString = image.Property["ImageFocalPoint"].ToString();
-                
                 focalPoint = focalPointString.ToImageFocalPoint();
             }
 
@@ -64,7 +63,8 @@ namespace PictureRenderer.Optimizely
             var focalPoints = new List<(double x, double y)>();
             foreach (var imageRef in imageReferences.Where(ir => ir != null))
             {
-                imageUrls.Add((new UrlBuilder(ServiceLocator.Current.GetInstance<UrlResolver>().GetUrl(imageRef))).ToString());
+                var imageUrl = UrlResolver.Current.GetUrl(imageRef, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                imageUrls.Add(imageUrl);
 
                 var image = ServiceLocator.Current.GetInstance<IContentLoader>().Get<IContent>(imageRef);
 
