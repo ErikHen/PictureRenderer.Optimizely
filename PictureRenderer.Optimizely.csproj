@@ -10,12 +10,12 @@
 		<PackageTags>Picture Responsive Image Lazy</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIconUrl>https://raw.githubusercontent.com/ErikHen/PictureRenderer.Optimizely/main/_Build/picture_icon.png</PackageIconUrl>
-		<Version>3.2.0-preview</Version>
+		<Version>3.2.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="12.4.0" />
-		<PackageReference Include="PictureRenderer" Version="3.12.0-preview" />
+		<PackageReference Include="PictureRenderer" Version="[3.12.0, 4)" />
 	</ItemGroup>
 
 </Project>
