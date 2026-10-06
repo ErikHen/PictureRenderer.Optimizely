@@ -4,6 +4,7 @@ using EPiServer.Web;
 using EPiServer.Web.Routing;
 using PictureRenderer.Profiles;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace PictureRenderer.Optimizely
@@ -50,8 +51,7 @@ namespace PictureRenderer.Optimizely
                     SrcSetWidths = new[] { calculatedWith },
                     Sizes = new[] { $"{calculatedWith}px" },
                     AspectRatio = CalculateAspectRatio(imgValues),
-                    Quality = richTextProfile.Quality,
-                    ImgWidthHeight = true
+                    Quality = richTextProfile.Quality
                 };
             }
             if (richTextProfile is ImageSharpRteProfile imageSharpRteProfile)
@@ -62,15 +62,32 @@ namespace PictureRenderer.Optimizely
                     Sizes = new[] { $"{calculatedWith}px" },
                     AspectRatio = CalculateAspectRatio(imgValues),
                     CreateWebpForFormat = imageSharpRteProfile.CreateWebpForFormat,
-                    Quality = richTextProfile.Quality,
-                    ImgWidthHeight = true
+                    Quality = richTextProfile.Quality
                 };
             }
 
             var imgUrl = UrlResolver.Current.GetUrl(imgValues.Src);
             var imgPercentageWidth = imgValues.PercentageWidth > 0 ? imgValues.PercentageWidth + "%" : string.Empty;
+            var attributes = new PictureAttributes
+            {
+                ImgAlt = imgValues.Alt,
+                LazyLoading = LazyLoading.Browser,
+                ImgClass = imgValues.CssClass,
+                RenderImgWidthHeight = true,
+                ImgAdditionalAttributes = new Dictionary<string, string>()
+            };
 
-            return Picture.Render(imgUrl, tinyMcePictureProfile, imgValues.Alt, LazyLoading.Browser, default, imgValues.CssClass, imgPercentageWidth, style: imgValues.Style);
+            if (!string.IsNullOrEmpty(imgPercentageWidth))
+            {
+                attributes.ImgAdditionalAttributes.Add("width", imgPercentageWidth);
+            }
+
+            if (!string.IsNullOrEmpty(imgValues.Style))
+            {
+                attributes.ImgAdditionalAttributes.Add("style", imgValues.Style);
+            }
+
+            return Picture.Render(imgUrl, tinyMcePictureProfile, attributes, default);
         }
 
         private static ImgData GetValuesFromImg(string imgElement)
