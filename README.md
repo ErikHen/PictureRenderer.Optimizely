@@ -170,6 +170,8 @@ If you want a more fine grained control of which Xhtml properties that should re
 
 <br><br>
 ## Version history
+**4.0** Support for Optimizely CMS v13.3+. Targets .Net10.<br>
+
 **3.2** Use PictureRenderer v3.12. Adds support for custom attributes on img element.<br>
 
 | :exclamation:  Note the new PictureAttributes object  |
